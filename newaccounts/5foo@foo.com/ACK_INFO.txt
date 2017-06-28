@@ -1,7 +1,0 @@
-2017-06-28
-5foo@foo.com
-sched_engaging_default
-1234567890
-blah
-testing
-wut wut

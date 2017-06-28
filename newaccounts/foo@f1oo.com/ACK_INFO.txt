@@ -1,7 +1,0 @@
-2017-06-28
-foo@f1oo.com
-sched_mit_hill-gputest
-1234567890
-blah
-testing
-bler bler bler
