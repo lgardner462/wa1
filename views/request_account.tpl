@@ -322,7 +322,7 @@ function generateButton() {
           </fieldset>
       </div>
       <!-- ############################################# -->
-      <label for = "username">Username (Please use your institution's username):</label>
+      <label for = "username">Username: (Please use your institution's username)</label>
       <br>
       <input type = "text" name = "username" id = "username" onkeyup = "checkUserName(); checkFields()" required/>
       <span id="usernameMessage" class="confirmMessage"></span>
