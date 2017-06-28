@@ -325,6 +325,8 @@ def submit_info():
 	puttyKeyPath = curUserDir + puttyKeyName
 
 	# archive for the keys
+	zipDirBaseName = clusterName + "-cluster" 
+    	keyZipDirPath = curUserDir + clusterName + "-cluster"
 	keyZipName = clusterName + "-cluster.zip"
 	keyZipPath = curUserDir + keyZipName
 	key = ""
@@ -450,15 +452,19 @@ def submit_info():
 
             # convert private key to PuTTy ppk format via Expect script                                                                           
                         os.system("./convert_to_ppk.sh " + keyPath + " " + puttyKeyPath + " " + pass2)
-                        print(keyPath)
-                        print(puttyKeyPath)
+                        #print(keyPath)
+                        #print(puttyKeyPath)
 #cd to current user directory; after this os command, it returns to the directory of this file
            		os.system("cp README.md " + curUserDir )
 			os.system("pwd")
-			os.system("cd " + curUserDir + " ; zip " + keyZipName + " " + keyName + " " + keyName + ".pub " + puttyKeyName +  " README.md")
+    #		os.system("cd " + curUserDir + " ; mkdir " + keyZipDirPath + " cp keyZip; zip " + keyZipName + " " + keyZipDirPath + " ; zip -rv " + keyZipName + " " + keyName + " " + keyName + ".pub " + puttyKeyName +  " README.md")
 
+			os.system( "cd " + curUserDir + " ; mkdir " + zipDirBaseName + "; cp " + keyName + " " + zipDirBaseName+ "; cp " + keyName + ".pub " + zipDirBaseName + "; cp " + puttyKeyName + " " + zipDirBaseName+ " ; cp " + "README.md " + zipDirBaseName + " ; zip -rv " + keyZipName + " " + zipDirBaseName )   
+			#print keyZipPath
+			#print keyZipDirPath
 			# delete id_rsa and private.ppk (only id_rsa.pub remains)
-            		os.system("rm " + curUserDir + "/README.md" )
+			os.system("rm -rf " + zipDirBaseName)           
+			os.system("rm " + curUserDir + "/README.md" )
 			os.system("rm -f " + keyPath + " " + puttyKeyPath)
 			# record name of public key (username_id_rsa.pub)
 			f = open(curUserDir + "keys.txt", 'a')

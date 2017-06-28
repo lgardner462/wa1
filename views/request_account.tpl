@@ -142,7 +142,7 @@ function checkPass(affectField) {
 			pass1.style.backgroundColor = goodColor;
 			pass2.style.backgroundColor = goodColor;
 			message.style.color = goodColor;
-			message.innerHTML = "Passwords match.";
+			message.innerHTML = "Passphrases match.";
 
 			if(checkEmail(false) && checkPhone(false)) {	
 				submit.disabled = false;
@@ -166,7 +166,7 @@ function checkPass(affectField) {
 			pass1.style.backgroundColor = badColor;
 			pass2.style.backgroundColor = badColor;
 			message.style.color = badColor;
-			message.innerHTML = "Password must be greater than four characters.";    
+			message.innerHTML = "Passphrase must be greater than four characters.";    
 		}
 	}
 	else {
@@ -176,7 +176,7 @@ function checkPass(affectField) {
 			pass1.style.backgroundColor = badColor;
 			pass2.style.backgroundColor = badColor;
 			message.style.color = badColor;
-			message.innerHTML = "Passwords do not match.";
+			message.innerHTML = "Pasphrases do not match.";
 		}
 	}
 
@@ -302,11 +302,12 @@ function generateButton() {
           <legend>
             <input type="radio" Style="display:none"name = "keyChoice" id = "keyChoice" value = "generate" onclick = "generateButton(); checkFields()" checked /> Generate Key Pair
           </legend>
-          <label for="pass1">Password:</label>
+<font color="red">Please note that this is the passphrase for your SSH key. If you misplace either the SSH key or it's password you will be unable to login to the cluster via SSH until this is resolved.</font><br><br>
+          <label for="pass1">Passphrase:</label>
           <br>
           <input type="password" name="pass1" id="pass1" onkeyup = "checkPass()"/>
           <br>
-          <label for="pass2">Confirm Password:</label>
+          <label for="pass2">Confirm Passphrase:</label>
           <br>
           <input type="password" name="pass2" id="pass2" onkeyup = "checkPass()"/>
           <span id="passwordMessage" class="confirmMessage"></span>
@@ -354,14 +355,14 @@ function generateButton() {
           <input type="radio" id="tab-windows" name="tabs" checked>
           <label for="tab-windows">-- Windows --</label>
           <div id="tab-content-windows" class="tab-content animated fadeIn">
-            <h2>Generating SSH key pairs locally</h2>
+            <!--<h2>Generating SSH key pairs locally</h2>
             <ol>
               <li>Download PuTTYgen (available <a href = "http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">here</a>) and run the executable.</li>
               <li>Click on the <b>Generate</b> button and follow on-screen instructions.</li>
               <li>Create and confirm a <b>Key passphrase</b>.</li>
               <li>Save public and private keys. Saving the public key with the extension <b>.pub</b> can help to distinguish between the two keys.</li>
               <li> Upload the <b>public</b> key file.</li>
-            </ol>
+            </ol>-->
             <h2>Logging in with SSH</h2>
             <ol>
               <li>Download PuTTY (available <a href = "http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">here</a>) and run the executable.</li>
@@ -377,7 +378,7 @@ function generateButton() {
           <input type="radio" id="tab-linux" name="tabs">
           <label for="tab-linux">-- Linux/MacOS --</label>
           <div id="tab-content-linux" class="tab-content animated fadeIn">
-            <h2>Generating SSH key pairs locally</h2>
+            <!--<h2>Generating SSH key pairs locally</h2>
             <ol>
               <li>In a terminal, type the command <b>ssh-keygen -t rsa</b>, and press enter.</li>
               <ul>
@@ -392,7 +393,7 @@ function generateButton() {
               <li>Enter a password for the key pair, and press enter. You will be asked to retype the password for confirmation.</li>
               <li>Upload the <b>public</b> key file (the one ending in <b>.pub</b>).</li>
               <li>Make sure to run the command <b>chmod 600 <i>path/to/private/key</i></b> to secure your private key.
-            </ol>
+            </ol>-->
             <h2>Logging in with SSH</h2>
             <ol>
               <li>
