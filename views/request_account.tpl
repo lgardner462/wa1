@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
@@ -312,7 +311,6 @@ function generateButton() {
           <input type="password" name="pass2" id="pass2" onkeyup = "checkPass()"/>
           <span id="passwordMessage" class="confirmMessage"></span>
         </fieldset>
-<<<<<<< HEAD
           <fieldset hidden>
         <legend>
           <input type="radio" name = "keyChoice" id = "keyChoice" value = "upload" onclick = "uploadButton(); checkFields()"/> Upload <b>Public</b> Key
@@ -322,9 +320,6 @@ function generateButton() {
         <br>
         <font color="red"><u>Usually has .pub file extension</u> (ex. "id_rsa.pub")</font>
           </fieldset>
-
-=======
->>>>>>> 9af7cb1df7a8aa71eb565e98b76eebbf9dd0e574
       </div>
       <!-- ############################################# -->
       <label for = "username">Username (Please use your institution's username):</label>
