@@ -1,13 +1,6 @@
-This is the readme for ssh stuff
-
-directions go here
-
-what do you want here boss?
-
 <h1> READ THIS FIRST: </h1>
 
 The account approval process is a human process. This process usually takes between two and three school days but may take longer. You will not be able to login with these keys until the account approval and creation process is finished. Once this is finished you will receive a welcome email and you should then be able to login to the cluster.
-
 
 <h2>WHAT IS IN INCLUDED THIS ZIP</h2>
 * This README
@@ -19,14 +12,15 @@ The account approval process is a human process. This process usually takes betw
     
 * Once your account is created you will be added to the engaging1-users@mit.edu mailing list, this is how the admins will contact you about things like cluster maintanence and outages.
 
-* We have 3 main login nodes which can be reached 
+* To access the cluster you will need to log into one of the following login nodes.
+
  - eofe4.mit.edu   running centos 6
  - eofe5.mit.edu   running centos 6
  - eofe7.mit.edu   running centos 7
  
 
 
-</h2> LOGGING IN WITH SSH ON WINDOWS</h2>
+<h2> LOGGING IN WITH SSH ON WINDOWS</h2>
 
 
 1. Download PuTTY [https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html] and run the executable.
@@ -69,6 +63,3 @@ The account approval process is a human process. This process usually takes betw
 
 2. If you are logging in from a different computer you will need to either copy your private key generated at account creation to the other computer, or you will need to generate another set of keys and send them to engaging-admin@techsquare.com
  
-
-
-
