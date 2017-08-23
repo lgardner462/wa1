@@ -1,0 +1,5 @@
+Host eofe?.mit.edu
+User USERNAME
+ForwardX11 yes
+ForwardX11Trusted yes
+IdentityFile ~/CLUSTERNAME-cluster/linux/CLUSTERNAME-key

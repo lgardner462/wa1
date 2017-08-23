@@ -103,7 +103,7 @@ userSubject = "You have requested an account - " + curTimeShort
 userEmail =  """
 Thank you for your account request.
 Please note that this is *not* an automatic process.
-Account requests may take 2 school days to process.
+Account requests may take multiple school days to process.
 """
 
 ### CSV ################################################################################################
@@ -319,9 +319,9 @@ def submit_info():
 	curUserDir = usersDir + "/" + email + "/"
 
 	keyChoice = request.forms['keyChoice']
-	keyName = username + "_id_rsa"
+	keyName = clusterName + "-key"
 	keyPath = curUserDir + keyName
-	puttyKeyName = username + "_private.ppk"
+	puttyKeyName = clusterName+ "-key.ppk"
 	puttyKeyPath = curUserDir + puttyKeyName
 
 	# archive for the keys
@@ -446,7 +446,6 @@ def submit_info():
 				os.system("rm " + keyPath + ".pub")
 	
 			os.system("ssh-keygen -N " + pass2 + " -t rsa -f " + keyPath + " -C " + email)
-            		print("Hi")
       
            		# generate new key
 
@@ -458,13 +457,15 @@ def submit_info():
            		os.system("cp README.md " + curUserDir )
 			os.system("pwd")
     #		os.system("cd " + curUserDir + " ; mkdir " + keyZipDirPath + " cp keyZip; zip " + keyZipName + " " + keyZipDirPath + " ; zip -rv " + keyZipName + " " + keyName + " " + keyName + ".pub " + puttyKeyName +  " README.md")
-
-			os.system( "cd " + curUserDir + " ; mkdir " + zipDirBaseName + "; cp " + keyName + " " + zipDirBaseName+ "; cp " + keyName + ".pub " + zipDirBaseName + "; cp " + puttyKeyName + " " + zipDirBaseName+ " ; cp " + "README.md " + zipDirBaseName + " ; zip -rv " + keyZipName + " " + zipDirBaseName )   
+			genConfComm="cat config | sed 's/USERNAME/" + username +"/g' | sed 's/CLUSTERNAME-key/" + clusterName + "-key/g' > " + curUserDir + "/config"
+			os.system(genConfComm)
+			os.system( "cd " + curUserDir + " ; mkdir " + zipDirBaseName + "; mkdir " + zipDirBaseName + "/windows" + "; mkdir " + zipDirBaseName + "/linux " + "; cp " + keyName + " " + zipDirBaseName + "/linux" + "; cp " + keyName + ".pub " + zipDirBaseName + "; cp config  " + zipDirBaseName + "/linux " +"; cp " + puttyKeyName + " " + zipDirBaseName+ "/windows" + " ; cp " + "README.md " + zipDirBaseName + " ; zip -rv " + keyZipName + " " + zipDirBaseName )   
 			#print keyZipPath
 			#print keyZipDirPath
 			# delete id_rsa and private.ppk (only id_rsa.pub remains)
-			os.system("rm -rf " + zipDirBaseName)           
+			os.system("rm -rf " + curUserDir + "/" + zipDirBaseName)           
 			os.system("rm " + curUserDir + "/README.md" )
+			os.system("rm " + curUserDir + "/config")
 			os.system("rm -f " + keyPath + " " + puttyKeyPath)
 			# record name of public key (username_id_rsa.pub)
 			f = open(curUserDir + "keys.txt", 'a')
@@ -558,7 +559,7 @@ def submit_info():
 	
 #######################################################################################################
 		
-	return template("post_account", errors=errors, keyChoice=keyChoice, keyPath=keyPath , keyZipPath=keyZipPath)
+	return template("post_account", errors=errors, keyChoice=keyChoice, keyPath=keyPath , keyZipPath=keyZipPath , clusterName=clusterName)
 
 
 #######################################################################################################
@@ -607,12 +608,12 @@ def submit_info():
 	curUserDir = usersDir + "/" + email + "/"
 
 	keyChoice = request.forms['keyChoice']
-	keyName = username + "_id_rsa"
+	keyName = clusterName + "-key"
 	keyPath = curUserDir + keyName
 	key = ""
 
 	# converted from id_rsa key (when generating a key)
-	puttyKeyName = username + "_private.ppk"
+	puttyKeyName = clusterName + "-key" + ".ppk"
 	puttyKeyPath = curUserDir + puttyKeyName
 
 	# archive for the keys
@@ -896,8 +897,8 @@ def submit_info():
 
 
 ###### BETA #############
-@route('/id_rsa', method = 'POST')
-def download_key():
+@route('/<clusterName>-cluster.zip', method = 'POST')
+def download_key(clusterName):
 	# clusterName variable not further referenced, but needed here for the route initialization
 	response.content_type = 'application/zip'
 

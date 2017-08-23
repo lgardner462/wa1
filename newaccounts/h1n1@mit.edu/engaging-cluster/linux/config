@@ -1,0 +1,5 @@
+Host eofe?.mit.edu
+User asdfgsghs
+ForwardX11 yes
+ForwardX11Trusted yes
+IdentityFile ~/.ssh/engaging-key
